@@ -1,4 +1,6 @@
 <?php
+# /app/Controller/PersonasController.php
+
 class PersonasController extends AppController {
 # Properties
 	public $name = 'Personas';
@@ -11,9 +13,16 @@ class PersonasController extends AppController {
 	 * beforeFilter
 	 */
 	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->Auth->allow('signup', 'confirm');
+		parent::beforeFilter(); // parent beforeFilter.
 		
+		$this->Auth->allow('signup', 'logout');
+	}
+	
+	/**
+	 * isAuthorized
+	 */
+	public function isAuthorized($user = null) {
+		return parent::isAuthorized($user);
 	}
 	
 	/**
@@ -24,9 +33,7 @@ class PersonasController extends AppController {
 			if ($this->Auth->login()) {
 				$persona = $this->Auth->user();
 				$this->Session->setFlash(__('Welcome'));
-				$this->redirect(array(
-					'action' => 'view'
-				));
+				$this->redirect($this->Auth->redirectUrl());
 			} else {
 				$this->Session->setFlash(__('Invalid credentials'));
 			}
@@ -65,14 +72,64 @@ class PersonasController extends AppController {
 	}
 	
 	/**
+	 * index
+	 */
+	public function index() {
+		$this->Persona->recursive = 0;
+		$personas = $this->paginate();
+		
+		$this->set(compact('personas'));
+	}
+	
+	/**
+	 * edit
+	 */
+	public function edit($id = null) {
+		$this->Persona->id = $id;
+		if (!$this->Persona->exists()) {
+			throw new NotFoundException(__('Invalid persona.'));
+		}
+		
+		if ($this->request->is('post') || $this->request->is('put')) {
+			if ($this->Persona->save($this->request->data)) {
+				$this->Session->setFlash(__('The persona has been saved.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The persona could not been saved. Please try again.'));
+			}
+		} else {
+			$this->request->data = $this->Persona->read(null, $id);
+		}
+	}
+	
+	/**
+	 * delete
+	 */
+	public function delete($id = null) {
+		$this->Persona->id = $id;
+		if (!$this->Persona->exists()) {
+			throw new NotFoundException(__('Invalid persona.'));
+		}
+		
+		if ($this->Persona->delete()) {
+			$this->Session->setFlash(__('Persona deleted.'));
+		} else {
+			$this->Session->setFlash(__('Persona could not be deleted. Please try again.'));
+		}
+		$this->redirect(array('action' => 'index'));
+	}
+	
+	/**
 	 * view
 	 */
 	public function view($id = null) {
 		$this->Persona->id = $id;
-		// if (!$this->Persona->exists()) {
-			// throw new NotFoundException(__('Invalid user'));
-		// }
-		// $this->set('persona', $this->Persona->read(null, $id));
+		if (!$this->Persona->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		
+		$persona = $this->Persona->read(null, $id);
+		$this->set(compact('persona'));
     }
 	
 }

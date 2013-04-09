@@ -1,22 +1,24 @@
 <?php
+# /app/Model/Persona.php
+
 App::uses('Security', 'Utility');
 
 class Persona extends AppModel {
 # Properties
 	public $name = 'Persona';
-	 public $validate = array(
-        'email' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'An email is required'
-            )
-        ),
-        'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
-        )
+	public $validate = array(
+		'email' => array(
+			'required' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'An email is required'
+			)
+		),
+		'password' => array(
+			'required' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'A password is required'
+			)
+		)
     );
 	
 	/**************************************************
@@ -31,9 +33,7 @@ class Persona extends AppModel {
 			$hash = Security::hash($this->data['Persona']['password'], null, true);
 			$this->data['Persona']['password'] = $hash;
 		}
-		if ($this->hasAny(array('Persona.email' => $this->data['Persona']['email']))) {
-			return false;
-		}
+		
 		return true;
 	}
 	

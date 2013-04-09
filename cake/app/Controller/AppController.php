@@ -19,25 +19,45 @@ class AppController extends Controller {
 					)
 				)
 			),
-			// 'authError'	=> 'You have no authorization to access this page.',
+			'authError'	=> 'You have no authorization to access this page.',
 			'loginAction'	=> array(
 				'controller'	=> 'personas',
 				'action'		=> 'login'
 			),
 			'loginRedirect'	=> array(
-				'controller'	=> 'personas',
+				'controller'	=> 'stores',
 				'action'		=> 'view'
 			),
 			'logoutRedirect'	=> array(
 				'controller'	=> 'pages',
 				'action'		=> 'display',
 				'home'
+			),
+			'authorize'	=> array(
+				'Controller'	=> array(
+					'userModel'	=> 'Persona'
+				)
 			)
-		),
-		'DebugKit.Toolbar'
+		)
 	);
 	
+	/**
+	 * beforeFilter
+	 */
 	public function beforeFilter() {
-		// $this->Auth->allow();
+		if ($this->request->controller == 'pages')
+			$this->Auth->allow('display');
 	}
+	
+	/**
+	 * isAuthorized
+	 */
+	public function isAuthorized($user) {
+		// Administrators has global access
+		if (isset($user['is_admin']) && $user['is_admin'] == true)
+			return true;
+		
+		return false;
+	} 
+	
 }

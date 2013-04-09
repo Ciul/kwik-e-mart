@@ -34,7 +34,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
+		
 	?>
 </head>
 <body>
@@ -57,6 +57,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php // echo $this->element('sql_dump'); ?>
+	<?php
+		# Scripts
+			# Global Scripts Vars
+			echo $this->element('global_scripts_vars');
+			# MooTools
+			echo $this->Html->script('libs/mootools/mootools-core');
+			# Scripts block
+			echo $this->fetch('script');
+	?>
 </body>
 </html>

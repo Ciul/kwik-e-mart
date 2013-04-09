@@ -1,7 +1,7 @@
 Kwik-E-Mart App (v 1.0.0)
 ==========================
 
-This is a conceptual web app that intents to solve the problem to find products in a local store.
+This is a conceptual web app that intents to solve the problem to quicly find products in a local store.
 
 Frameworks and Friends
 ======================
@@ -19,6 +19,7 @@ Client Side
 - jQuery
 - Twitter Bootstrap
 - Icomoon
+- Raphaeljs
 
 Contributors
 ============

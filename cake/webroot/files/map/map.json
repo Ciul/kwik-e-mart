@@ -1,0 +1,93 @@
+{
+	"drogueria": {
+		"type":			"rect",
+		"isSection":	true,
+		"x":			10,
+		"y":			10,
+		"width":		390,
+		"height":		60,
+		"fill":			"#F00",
+		"stroke":		"none"
+	},
+	"frutas": {
+		"type":			"rect",
+		"x":			500,
+		"y":			10,
+		"width":		390,
+		"height":		60,
+		"fill":			"#F00",
+		"stroke":		"none"
+	},
+	"verduras": {
+		"type":			"rect",
+		"x":			830,
+		"y":			70,
+		"width":		60,
+		"height":		390,
+		"fill":			"#0F0",
+		"stroke":		"none"
+	},
+	"carnes": {
+		"type":			"rect",
+		"x":			830,
+		"y":			500,
+		"width":		60,
+		"height":		390,
+		"fill":			"#F00",
+		"stroke":		"none"
+	},
+	"panaderia": {
+		"type":			"rect",
+		"x":			500,
+		"y":			830,
+		"width":		330,
+		"height":		60,
+		"fill":			"#00F",
+		"stroke":		"none"
+	},
+	"refrigerados": {
+		"type":			"rect",
+		"x":			10,
+		"y":			830,
+		"width":		390,
+		"height":		60,
+		"fill":			"#00F",
+		"stroke":		"none"
+	},
+	"seccion1": {
+		"type":			"rect",
+		"x":			260,
+		"y":			140,
+		"width":		140,
+		"height":		300,
+		"fill":			"#00F",
+		"stroke":		"none"
+	},
+	"seccion2": {
+		"type":			"rect",
+		"x":			560,
+		"y":			140,
+		"width":		140,
+		"height":		300,
+		"fill":			"#00F",
+		"stroke":		"none"
+	},
+	"seccion3": {
+		"type":			"rect",
+		"x":			560,
+		"y":			480,
+		"width":		140,
+		"height":		300,
+		"fill":			"#00F",
+		"stroke":		"none"
+	},
+	"seccion4": {
+		"type":			"rect",
+		"x":			260,
+		"y":			480,
+		"width":		140,
+		"height":		300,
+		"fill":			"#00F",
+		"stroke":		"none"
+	}
+}
