@@ -17,5 +17,11 @@
 		'placeholder'		=> 'Type product to search',
 		'disabled'			=> true
 	));
+	echo $this->Form->input('search', array(
+		'type'	=> 'button',
+		'id'	=> 'search-button',
+		'div'	=> false,
+		'label'	=> false
+	));
 ?>
 <div id="map_container"></div>
