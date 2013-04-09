@@ -67,6 +67,10 @@ window.addEvent('domready', function() {
 		var delay 		= Type.isNumber(delay) ? delay : 200,
 			fill_backup	= this.attrs.fill;
 		
+		// Stores original Element fill for further retrieval.
+		if (!this.data('fill'))
+			this.data('fill', fill_backup);
+		
 		var animated = false;
 		var animation_backup = Raphael.animation({
 			fill: fill_backup
@@ -80,16 +84,28 @@ window.addEvent('domready', function() {
 		var animation_highlight = Raphael.animation({
 			fill: '#CCFF33'
 		}, delay, null, function() {
-			this.animate(animation_backup.delay(delay));
+			if (animated == false) // This will cause that after second highlight the section remains highlighted.
+				this.animate(animation_backup.delay(delay));
 		});
 		
-		this.animate(animation_highlight);
+		this.animate(animation_highlight.delay(delay));
+	};
+	
+	var restoreSections = function() {
+		Object.each(mapSectionsReferenceObj, function(el, section) {
+			var original_fill = el.data('fill');
+			if (original_fill)
+				el.attr('fill', original_fill);
+		});
 	};
 	/***********************************************************************
 	 * Running Code
 	 ***********************************************************************/
 	var productSearch = function(ev) {
 		var searched = search.getProperty('value');
+		
+		// Restores all sections to their original states (not highlighted).
+		restoreSections();
 		
 		requestProductSearch(searched, function(results) {
 			if (results.success) {
@@ -106,7 +122,12 @@ window.addEvent('domready', function() {
 	// Add search events for make requests.
 	search.addEvents({
 		change:				productSearch,
-		webkitspeechchange:	productSearch
+		webkitspeechchange:	productSearch,
+		keyup: function(ev) {
+			if (this.value == '') // If left blank
+				// Restores all sections to their original states (not highlighted).
+				restoreSections();
+		}
 	});
 	
 	// Create a raphael canvas for Store's map.
