@@ -15,7 +15,7 @@ window.addEvent('domready', function() {
 	 ***********************************************************************/
 	var requestProductSearch = function(searched, fn) {
 		new Request.JSON({
-			url: '/cake/public/kwik-e-mart/products/search',
+			url: app.base+'/products/search',
 			data: {
 				search: searched
 			},
@@ -31,7 +31,7 @@ window.addEvent('domready', function() {
 	var requestStoreMap = function(version, fn) {
 		version = Type.isNumber(version) ? '/'+String.from(version) : '';
 		new Request.JSON({
-			url: '/cake/public/kwik-e-mart/stores/getmap'+version,
+			url: app.base+'/stores/getmap'+version,
 			onSuccess: function(jsonMap) {
 				fn(jsonMap);
 			},
