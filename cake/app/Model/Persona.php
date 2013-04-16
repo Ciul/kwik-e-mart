@@ -70,7 +70,6 @@ class Persona extends AppModel {
 		if (empty($password))
 			unset($data['Persona']['password']); // Do not modify password
 		
-		$this->create();
 		$persona = $this->save($data);
 		
 		return !empty($persona);
