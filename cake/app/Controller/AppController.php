@@ -3,6 +3,7 @@
 App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
+	public $publicActions = array();
 	public $components = array(
 		'Session',
 		'RequestHandler',
@@ -45,8 +46,7 @@ class AppController extends Controller {
 	 * beforeFilter
 	 */
 	public function beforeFilter() {
-		if ($this->request->controller == 'pages')
-			$this->Auth->allow('display');
+		$this->Auth->allow($this->publicActions);
 	}
 	
 	/**

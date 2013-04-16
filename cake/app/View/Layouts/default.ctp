@@ -1,71 +1,76 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
+	<title><?php echo $title_for_layout; ?></title>
 	<?php
-		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
-
+	# Meta tags	
+		echo $this->Html->meta('icon'); // Favicon
+		echo $this->Html->meta(array('name' =>'viewport', 'content' => 'width=device-width, initial-scale=1.0'));
 		echo $this->fetch('meta');
+
+	# Stylesheets
+		# Twitter Bootstrap Framework
+		echo $this->Html->css('bootstrap/bootstrap');
+		echo $this->Html->css('bootstrap/bootstrap-responsive');
+		
+		# Default
+		echo $this->Html->css('default');
+		
+		# Main CSS Block
 		echo $this->fetch('css');
 		
+		# Javascript at Head
+		echo $this->fetch('script-head');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
+	<!-- Header -->
+	<header>
+		<?php
+			$this->startIfEmpty('navbar');
+			echo $this->element('navbar');
+			$this->end();
+			
+			echo $this->fetch('navbar');
+		?>
+		<?php echo $this->Session->flash(); // Flash messages ?>
+	</header>
+	<!--/ Header -->
+	
+	<!-- Container -->
+	<div class="container">
+		<?php echo $this->fetch('content'); ?>
+		
+		<hr/>
+		<!-- Footer -->
+		<footer>
+			<div id="copy">
+				<p>&copy; DreamMakers <?php echo date('Y'); ?></p>
+			</div>
+		</footer>
+		<!--/ Footer -->
 	</div>
-	<?php // echo $this->element('sql_dump'); ?>
+	<!--/ Container -->
 	<?php
-		# Scripts
-			# Global Scripts Vars
+		# Javascript at Bottom
+		
+			# Mootools
+			echo $this->Html->script('mootools/mootools-core.js');
+			
+			# jQuery
+			echo $this->Html->script('jquery/jquery.js');
+			echo $this->Html->scriptBlock('$.noConflict();');
+			
+			# Twitter Bootstrap
+			echo $this->Html->script('bootstrap/bootstrap.js');
+			
+			# Global Javascript Elements
 			echo $this->element('global_scripts_vars');
-			# MooTools
-			echo $this->Html->script('libs/mootools/mootools-core');
-			# Scripts block
+			
+			# Main Script Block
 			echo $this->fetch('script');
 	?>
+	<?php // echo $this->element('sql_dump'); ?>
 </body>
 </html>

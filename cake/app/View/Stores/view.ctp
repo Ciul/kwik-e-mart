@@ -1,4 +1,9 @@
 <?php
+# Stylesheets
+	echo $this->Html->css(array(
+		'stores/view.css'
+	));
+
 # Scripts
 	echo $this->Html->script(array(
 		# Raphaeljs
@@ -7,21 +12,27 @@
 		'stores/view'
 	), array('inline' => false));
 ?>
-<h2>Store</h2>
-<?php
-	echo $this->Form->input('search', array(
-		'type' 				=> 'text',
-		'x-webkit-speech'	=> 'x-webkit-speech',
-		'label'				=> false,
-		'div'				=> false,
-		'placeholder'		=> 'Type product to search',
-		'disabled'			=> true
-	));
-	echo $this->Form->input('search', array(
-		'type'	=> 'button',
-		'id'	=> 'search-button',
-		'div'	=> false,
-		'label'	=> false
-	));
-?>
+
+<div class="jumbotron">
+	<h1>Mapa</h1>
+</div>
+
+<div class="input-append well">
+	<?php
+		echo $this->Form->input('search', array(
+			'type' 				=> 'search',
+			'id'				=> 'search',
+			'class'				=> 'span10',
+			'x-webkit-speech'	=> 'x-webkit-speech',
+			'label'				=> false,
+			'div'				=> false,
+			'placeholder'		=> 'Type product to search',
+			'disabled'			=> true
+		));
+	?>
+
+	<span class="add-on">
+		<a id="search-button" href="#">BUSCAR</a>
+	</span>
+</div>
 <div id="map_container"></div>

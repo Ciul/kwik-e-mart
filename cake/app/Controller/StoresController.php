@@ -50,7 +50,7 @@ class StoresController extends AppController {
 		$file['pathWithVersion'] = $file['path'] . $file['version'] . '.json';
 		
 		if (file_exists($file['pathWithVersion']) == false)
-			throw new NotFoundException('Invalid map resource.');
+			throw new NotFoundException('Mapa Invalido.');
 		
 		$this->response->file($file['pathWithVersion']);
 		return $this->response;

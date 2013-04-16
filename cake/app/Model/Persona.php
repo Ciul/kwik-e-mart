@@ -57,5 +57,24 @@ class Persona extends AppModel {
 		return array($persona, !empty($persona));
 	}
 	
+	/**
+	 * edit
+	 */
+	public function edit($data) {
+		$email = isset($data['Persona']['email']) ? $data['Persona']['email'] : null;
+		$password = isset($data['Persona']['password']) ? $data['Persona']['password'] : null;
+		
+		if (!is_string($email))
+			return array(null, false);
+		
+		if (empty($password))
+			unset($data['Persona']['password']); // Do not modify password
+		
+		$this->create();
+		$persona = $this->save($data);
+		
+		return !empty($persona);
+	}
+	
 }
 ?>
