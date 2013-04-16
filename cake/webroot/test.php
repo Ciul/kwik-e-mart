@@ -33,11 +33,18 @@ if (!defined('DS')) {
  */
 
 /**
+ * The full path to the cake directory
+ */ 
+if (!defined('BASEROOT')) {
+	define ('BASEROOT', 'PATH_TO_CAKE_FOLDER');
+} 
+ 
+/**
  * The full path to the directory which holds "app", WITHOUT a trailing DS.
  *
  */
 if (!defined('ROOT')) {
-	define('ROOT', dirname(dirname(dirname(__FILE__))));
+	define('ROOT', 'PATH_TO_CAKE_APPS_FOLDER');
 }
 
 /**
@@ -45,7 +52,7 @@ if (!defined('ROOT')) {
  *
  */
 if (!defined('APP_DIR')) {
-	define('APP_DIR', basename(dirname(dirname(__FILE__))));
+	define('APP_DIR', 'kwik-e-mart');
 }
 
 /**
@@ -59,7 +66,7 @@ if (!defined('APP_DIR')) {
  * The following line differs from its sibling
  * /lib/Cake/Console/Templates/skel/webroot/test.php
  */
-//define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'lib');
+	define('CAKE_CORE_INCLUDE_PATH', 'PATH_TO_CAKE_LIB_FOLDER');
 
 /**
  * Editing below this line should not be necessary.
