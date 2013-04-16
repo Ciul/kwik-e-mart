@@ -3,7 +3,8 @@
 
 class PersonasController extends AppController {
 # Properties
-	public $name = 'Personas';
+	public $name			= 'Personas';
+	public $publicActions	= array('signup', 'logout');
 	
 	/**************************************************
 	 * ACTIONS
@@ -14,14 +15,16 @@ class PersonasController extends AppController {
 	 */
 	public function beforeFilter() {
 		parent::beforeFilter(); // parent beforeFilter.
-		
-		$this->Auth->allow('signup', 'logout');
 	}
 	
 	/**
 	 * isAuthorized
 	 */
 	public function isAuthorized($user = null) {
+		if ($this->action == 'view')
+			if ($this->request->params['pass'][0] == 'me')
+				return true;
+		
 		return parent::isAuthorized($user);
 	}
 	
@@ -32,10 +35,17 @@ class PersonasController extends AppController {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				$persona = $this->Auth->user();
-				$this->Session->setFlash(__('Welcome'));
-				$this->redirect($this->Auth->redirectUrl());
+				$this->Session->setFlash(__('Bienvenido'), 'alert', array('class' => 'alert-info', 'block' => true));
+				
+				$redirectTo = $this->Auth->redirectUrl();
+				if ($persona['is_admin'])
+					$redirectTo = array('controller' => 'personas', 'action' => 'index');
+				else
+					$redirectTo = array('controller' => 'stores', 'action' => 'view');
+				
+				$this->redirect($redirectTo);
 			} else {
-				$this->Session->setFlash(__('Invalid credentials'));
+				$this->Session->setFlash(__('Invalid credentials'), 'alert', array('class' => 'alert-error'));
 			}
 		}
 	}
@@ -45,11 +55,29 @@ class PersonasController extends AppController {
 	 */
 	public function logout() {
 		if ($this->Auth->loggedIn()) {
-			$this->Session->setFlash(__('We are already missing you.'));
+			$this->Session->setFlash('<h2>'.__('Te estamos extrañando.').'</h2>', 'alert', array('class' => 'alert-info', 'block' => true));
 			$this->redirect($this->Auth->logout());
 		} else {
-			$this->Session->setFlash(__('You are not logged in.'));
+			$this->Session->setFlash(__('No fue posible desloguearte. Tal vez es mejor que no te vayas aún. ¿No crees?'), 'alert', array('class' => 'alert-error'));
 			$this->redirect(array('action' => 'login'));
+		}
+	}
+	
+	/**
+	 * add
+	 */
+	public function add() {
+		if ($this->request->is('post')) {
+			list($persona, $success) = $this->Persona->register($this->data);
+			
+			if ($success == true && !empty($persona)) {
+				$this->Session->setFlash('El usuario fue creado exitosamente :]', 'alert', array('class' => 'alert-info'));
+				$this->redirect(array('action' => 'index' ));
+			} else if($success == false && !empty($persona)) {
+				$this->Session->setFlash('Ese usuario ya existe.', 'alert', array('class' => 'alert-error'));
+			} else {
+				$this->Session->setFlash('El usuario no pudo ser creado. Por favor no desistas.', 'alert', array('class' => 'alert-error'));
+			}
 		}
 	}
 	
@@ -61,12 +89,12 @@ class PersonasController extends AppController {
 			list($persona, $success) = $this->Persona->register($this->data);
 			
 			if ($success == true && !empty($persona)) {
-				$this->Session->setFlash(__('The user has been saved. Please login with your account.'));
+				$this->Session->setFlash('Bienvenido a la manada ;]', 'alert', array('class' => 'alert-success', 'block' => true));
 				$this->redirect(array('action' => 'login' ));
 			} else if($success == false && !empty($persona)) {
-				$this->Session->setFlash(__('The user is already registered. Please login.'));
+				$this->Session->setFlash('Ese usuario ya existe!', 'alert', array('class' => 'alert-error'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please try again.'));
+				$this->Session->setFlash('El usuario no pudo ser creado. No desistas', 'alert', array('class' => 'alert-error'));
 			}
 		}
 	}
@@ -87,15 +115,15 @@ class PersonasController extends AppController {
 	public function edit($id = null) {
 		$this->Persona->id = $id;
 		if (!$this->Persona->exists()) {
-			throw new NotFoundException(__('Invalid persona.'));
+			throw new NotFoundException(__('Persona Invalida.'));
 		}
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Persona->save($this->request->data)) {
-				$this->Session->setFlash(__('The persona has been saved.'));
+			if ($this->Persona->edit($this->request->data)) {
+				$this->Session->setFlash('Los cambios fueron guardados exitosamente.', 'alert', array('class' => 'alert-success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The persona could not been saved. Please try again.'));
+				$this->Session->setFlash('Los cambios no fueron guardados. Por favor no desistas.', 'alert', array('alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Persona->read(null, $id);
@@ -108,13 +136,13 @@ class PersonasController extends AppController {
 	public function delete($id = null) {
 		$this->Persona->id = $id;
 		if (!$this->Persona->exists()) {
-			throw new NotFoundException(__('Invalid persona.'));
+			throw new NotFoundException(__('Persona Invalida.'));
 		}
 		
 		if ($this->Persona->delete()) {
-			$this->Session->setFlash(__('Persona deleted.'));
+			$this->Session->setFlash('La persona fue eliminada. Bye bye', 'alert', array('class' => 'alert-info'));
 		} else {
-			$this->Session->setFlash(__('Persona could not be deleted. Please try again.'));
+			$this->Session->setFlash('La persona no pudo ser eliminada. Tal vez no deberías irte. ¿No crees?', 'alert', array('class' => 'alert-error'));
 		}
 		$this->redirect(array('action' => 'index'));
 	}
@@ -123,9 +151,15 @@ class PersonasController extends AppController {
 	 * view
 	 */
 	public function view($id = null) {
+		if ($id == 'me') { // Special case for loggedin user to see his/her profile
+			$user_id = $this->Auth->user('id');
+			if (!empty($user_id))
+				$id = $user_id;
+		}
+		
 		$this->Persona->id = $id;
 		if (!$this->Persona->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Persona Invalida'));
 		}
 		
 		$persona = $this->Persona->read(null, $id);

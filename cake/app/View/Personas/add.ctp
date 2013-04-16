@@ -1,25 +1,25 @@
 <?php
-# /app/View/Sections/edit.ctp
-	echo $this->Form->create('Section', array('class' => 'simple-centered'));
+# /app/View/Personas/add.ctp
+	echo $this->Form->create('Persona', array('class' => 'simple-centered'));
 ?>
 <fieldset>
-	<legend>Editando: <?php echo $this->data['Section']['name']; ?></legend>
+	<legend>Creando Nueva Persona:</legend>
 	<?php
 		echo $this->Form->input('name', array(
 			'div'			=> false,
 			'label'			=> false,
-			'placeholder'	=> 'Nombre de la Sección',
+			'placeholder'	=> 'Nombre de la Persona',
 			'required'		=> true
 		));
-	?>
-		
-	<?php
-		echo $this->Form->input('published', array(
-			'label'	=> 'Público'
-		));
-	?>
 	
-	<?php
+		echo $this->Form->input('email');
+		echo $this->Form->input('password', array(
+			'value'	=> ''
+		));
+		echo $this->Form->input('enabled');
+		echo $this->Form->input('confirmed');
+		echo $this->Form->input('is_admin');
+	
 		echo $this->Form->submit('Guardar', array(
 			'div'	=> false,
 			'class'	=> 'btn btn-primary'

@@ -1,0 +1,19 @@
+/**
+ * /webroot/css/stores/view.css
+ */
+
+#search {
+	margin: 0 auto;
+	box-shadow: inset 0px 0px 4px #d7d7d7;
+}
+
+#search-button {
+	text-decoration: none;
+	color: #7d7d7d;
+	font-weight: bold;
+}
+
+#search-button:hover {
+	color: #000;
+}
+

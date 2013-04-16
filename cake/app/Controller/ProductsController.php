@@ -47,7 +47,7 @@ class ProductsController extends AppController {
 	public function view($id = null) {
 		$this->Product->id = $id;
 		if (!$this->Product->exists()) {
-			throw new NotFoundException(__('Invalid product.'));
+			throw new NotFoundException('Producto Invalido');
 		}
 		
 		$product = $this->Product->read(null, $id);
@@ -61,10 +61,10 @@ class ProductsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Product->create();
 			if ($this->Product->save($this->request->data)) {
-				$this->Session->setFlash('Product created successfully.');
+				$this->Session->setFlash('El producto fue añadido exitosamente.', 'alert', array('class' => 'alert-success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Product could not be saved. Please try again.'));
+				$this->Session->setFlash('El producto no pudo ser creado. Por favor intenta nuevamente.', 'alert', 'alert-error');
 			}
 		}
 		
@@ -78,15 +78,15 @@ class ProductsController extends AppController {
 	public function edit($id = null) {
 		$this->Product->id = $id;
 		if (!$this->Product->exists()) {
-			throw new NotFoundException(__('Invalid product.'));
+			throw new NotFoundException('Producto Invalido');
 		}
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Product->save($this->request->data)) {
-				$this->Session->setFlash(__('The product has been saved.'));
+				$this->Session->setFlash('Los cambios fueron guardados con éxito :)', 'alert', array('class' => 'alert-success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The product could not been saved. Please try again.'));
+				$this->Session->setFlash('Los cambios no pudieron ser guardados. Intenta nuevamente.', 'alert', array('class' => 'alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Product->read(null, $id);
@@ -102,13 +102,13 @@ class ProductsController extends AppController {
 	public function delete($id = null) {
 		$this->Product->id = $id;
 		if (!$this->Product->exists()) {
-			throw new NotFoundException(__('Invalid product.'));
+			throw new NotFoundException('Producto Invalido');
 		}
 		
 		if ($this->Product->delete()) {
-			$this->Session->setFlash(__('Product deleted.'));
+			$this->Session->setFlash('Producto eliminado con éxito', 'alert', array('class' => 'alert-success'));
 		} else {
-			$this->Session->setFlash(__('Product could not be deleted. Please try again.'));
+			$this->Session->setFlash('El producto no pudo ser eliminado. Por favor intenta nuevamente.', 'alert', array('class' => 'alert-error'));
 		}
 		$this->redirect(array('action' => 'index'));
 	}

@@ -29,8 +29,8 @@ if (!defined('DS')) {
 /**
  * The full path to the cake directory
  */ 
-if (!defined('BASEROOTH')) {
-	define ('BASEROOT', 'D:'.DS.'Dev'.DS.'www'.DS.'cake');
+if (!defined('BASEROOT')) {
+	define ('BASEROOT', 'PATH_TO_CAKE_FOLDER');
 } 
  
 /**
@@ -38,7 +38,7 @@ if (!defined('BASEROOTH')) {
  *
  */
 if (!defined('ROOT')) {
-	define('ROOT', BASEROOT.DS.'private'.DS.'apps');
+	define('ROOT', 'PATH_TO_CAKE_APPS_FOLDER');
 }
 
 /**
@@ -63,7 +63,7 @@ if (!defined('APP_DIR')) {
  * The following line differs from its sibling
  * /lib/Cake/Console/Templates/skel/webroot/index.php
  */
-	define('CAKE_CORE_INCLUDE_PATH', BASEROOT.DS.'private'.DS.'cores'.DS.'2_3_1'.DS.'lib');
+	define('CAKE_CORE_INCLUDE_PATH', 'PATH_TO_CAKE_LIB_FOLDER');
 
 /**
  * Editing below this line should NOT be necessary.

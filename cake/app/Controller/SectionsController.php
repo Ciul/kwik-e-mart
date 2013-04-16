@@ -42,7 +42,7 @@ class SectionsController extends AppController {
 	public function view($id = null) {
 		$this->Section->id = $id;
 		if (!$this->Section->exists()) {
-			throw new NotFoundException(__('Invalid section.'));
+			throw new NotFoundException('Sección Invalida');
 		}
 		
 		$section = $this->Section->read(null, $id);
@@ -56,10 +56,10 @@ class SectionsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Section->create();
 			if ($this->Section->save($this->request->data)) {
-				$this->Session->setFlash('Section created successfully.');
+				$this->Session->setFlash('La sección fue creada con éxito.', 'alert', array('class' => 'alert-succcess'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Section could not be saved. Please try again.'));
+				$this->Session->setFlash('La sección no pudo ser creada. Intenta nuevamente', 'alert', array('class' => 'alert-error'));
 			}
 		}
 	}
@@ -70,15 +70,15 @@ class SectionsController extends AppController {
 	public function edit($id = null) {
 		$this->Section->id = $id;
 		if (!$this->Section->exists()) {
-			throw new NotFoundException(__('Invalid section.'));
+			throw new NotFoundException('Sección Invalida');
 		}
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Section->save($this->request->data)) {
-				$this->Session->setFlash(__('The section has been saved.'));
+				$this->Session->setFlash('Los cambios fueron guardados con éxito', 'alert', array('class' => 'alert-success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The section could not been saved. Please try again.'));
+				$this->Session->setFlash('Los cambios no pudieron ser guardados. Intenta nuevamente', 'alert', array('class' => 'alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Section->read(null, $id);
@@ -91,13 +91,13 @@ class SectionsController extends AppController {
 	public function delete($id = null) {
 		$this->Section->id = $id;
 		if (!$this->Section->exists()) {
-			throw new NotFoundException(__('Invalid section.'));
+			throw new NotFoundException('Sección Invalida');
 		}
 		
 		if ($this->Section->delete()) {
-			$this->Session->setFlash(__('Section deleted.'));
+			$this->Session->setFlash('Sección eliminada exitosamente.', 'alert', array('class' => 'alert-error'));
 		} else {
-			$this->Session->setFlash(__('Section could not be deleted. Please try again.'));
+			$this->Session->setFlash('La sección no pudo ser eliminada. Intenta nuevamente.', 'alert', array('class' => 'alert-error'));
 		}
 		$this->redirect(array('action' => 'index'));
 	}

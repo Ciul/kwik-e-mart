@@ -6,6 +6,7 @@ window.addEvent('domready', function() {
 	Element.NativeEvents.webkitspeechchange = 2; // Add MooTools support for webkitspeechchange event.
 	// Get DOM elements references.
 	var search			= document.getElement('input#search'),
+		searchBtn		= document.getElement('#search-button'),
 		map_container	= $('map_container');
 	// Define program variables.
 	$global.mapSectionsReferenceObj = {};
@@ -128,6 +129,14 @@ window.addEvent('domready', function() {
 				// Restores all sections to their original states (not highlighted).
 				restoreSections();
 		}
+	});
+	
+	// Add searchBtn events for make requests.
+	searchBtn.addEvent('click', function(ev) {
+		ev.stop();
+		
+		if (search.get('value') !== '')
+			productSearch();
 	});
 	
 	// Create a raphael canvas for Store's map.
