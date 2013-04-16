@@ -8,6 +8,7 @@
  * Personas Routing
  */
 	Router::connect('/login', array('controller' => 'personas', 'action' => 'login'));
+	Router::connect('/logout', array('controller' => 'personas', 'action' => 'logout'));
 	Router::connect('/signup', array('controller' => 'personas', 'action' => 'signup'));
 	Router::connect('/kwikers', array('controller' => 'personas', 'action' => 'index'));
 	Router::connect('/kwikers/view/*', array('controller' => 'personas', 'action' => 'view'));
