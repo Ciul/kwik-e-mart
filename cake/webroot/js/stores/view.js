@@ -15,7 +15,7 @@ window.addEvent('domready', function() {
 	 ***********************************************************************/
 	var requestProductSearch = function(searched, fn) {
 		new Request.JSON({
-			url: app.base+'/products/search',
+			url: app.base+'/prod/search',
 			data: {
 				search: searched
 			},
@@ -31,7 +31,7 @@ window.addEvent('domready', function() {
 	var requestStoreMap = function(version, fn) {
 		version = Type.isNumber(version) ? '/'+String.from(version) : '';
 		new Request.JSON({
-			url: app.base+'/stores/getmap'+version,
+			url: app.base+'/store/map'+version,
 			onSuccess: function(jsonMap) {
 				fn(jsonMap);
 			},
