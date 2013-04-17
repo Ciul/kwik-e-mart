@@ -4,7 +4,21 @@
 
 #work-team .title h1 {
 	text-align: center;
-} 
+}
+
+#explanation {
+	
+}
+
+#explanation h2 {
+	text-align: center;
+	color: #333;
+	text-shadow: 1px 1px 1px #777, -1px -1px 0px #DDD;;
+}
+
+#explanation p {
+	color: #7c7c7c;
+}
  
 /************
  * THUMBNAILS

@@ -20,6 +20,15 @@
 
 <hr/>
 
+<div class="container-fluid">
+	<div id="explanation" class="span12">
+		<h2>¿Qu&eacute; es Kwik-e-mart?</h2>
+		<p class="lead">Kwik-e-mart es una aplicaci&oacute;n web que te permite hacer tus compras de manera &aacute;gil y f&aacute;cil.</p>
+		<p class="lead">Podr&aacute;s buscar los productos que deseas y Kwik-e-mart te indicar&aacute; d&oacute;nde encontrarlo dentro de la tienda.</p>
+		<p class="lead">¿Acaso no es genial? Apuesto que tu mascota no puede hacer ese truco.</p>
+	</div>
+</div>
+
 <div id="work-team" class="container-fluid">
 	<div class="row-fluid title">
 		<h1 class="span12">Nuestro Equipo de Trabajo</h1>
