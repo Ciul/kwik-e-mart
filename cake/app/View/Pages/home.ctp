@@ -41,8 +41,8 @@
 			
 			<!-- Luis Carlos Osorio -->
 			<li class="span4">
-				<a href="http://facebook.com/558897400">
-					<div class="thumbnail" itemscope itemtype="http://data-vocabulary.org/Person">
+				<a href="http://facebook.com/558897400" itemscope itemtype="http://data-vocabulary.org/Person" target="_blank">
+					<div class="thumbnail">
 						<img itemprop="photo" src="http://graph.facebook.com/558897400/picture?width=200&height=200" alt="Luis Carlos Osorio Jayk" title="Luis Carlos Osorio Jayk" class="img-circle"/>
 						<h3 itemprop="name">Luis Carlos Osorio Jayk</h3>
 					</div>
@@ -50,7 +50,7 @@
 			</li>
 			<!-- Luis Fran Cardozo -->
 			<li class="span4">
-				<a href="http://facebook.com/577560958" itemscope itemtype="http://data-vocabulary.org/Person">
+				<a href="http://facebook.com/577560958" itemscope itemtype="http://data-vocabulary.org/Person" target="_blank">
 					<div class="thumbnail">
 						<img itemprop="photo" src="http://graph.facebook.com/577560958/picture?width=200&height=200" alt="Luis Fran Cardozo" title="Luis Fran Cardozo" class="img-circle"/>
 						<h3 itemprop="name">Luis Fran Cardozo</h3>
@@ -60,7 +60,7 @@
 			
 			<!-- Ronald Romero -->
 			<li class="span4">
-				<a href="http://facebook.com/544812214" itemscope itemtype="http://data-vocabulary.org/Person">
+				<a href="http://facebook.com/544812214" itemscope itemtype="http://data-vocabulary.org/Person" target="_blank">
 					<div class="thumbnail">
 						<img itemprop="photo" src="http://graph.facebook.com/544812214/picture?width=200&height=200" alt="Ronald Romero" title="Ronald Romero" class="img-circle"/>
 						<h3 itemprop="name">Ronald Romero</h3>
@@ -77,7 +77,7 @@
 		
 			<!-- Bladimir García -->
 			<li class="span4 offset2">
-				<a href="http://facebook.com/614657035" itemscope itemtype="http://data-vocabulary.org/Person">
+				<a href="http://facebook.com/614657035" itemscope itemtype="http://data-vocabulary.org/Person" target="_blank">
 					<div class="thumbnail">
 						<img itemprop="photo" src="http://graph.facebook.com/614657035/picture?width=200&height=200" alt="Bladimir Garc&iacute;a" title="Bladimir Garc&iacute;a" class="img-circle"/>
 						<h3 itemprop="name">Bladimir Garc&iacute;a</h3>
@@ -87,7 +87,7 @@
 			
 			<!-- Freddy Celin Teran -->
 			<li class="span4">
-				<a href="http://facebook.com/644696383" itemscope itemtype="http://data-vocabulary.org/Person">
+				<a href="http://facebook.com/644696383" itemscope itemtype="http://data-vocabulary.org/Person" target="_blank">
 					<div class="thumbnail">
 						<img itemprop="photo" src="http://graph.facebook.com/644696383/picture?width=200&height=200" alt="Freddy Celin Ter&aacute;n" title="Freddy Celin Ter&aacute;n" class="img-circle"/>
 						<h3 itemprop="name">Freddy Celin Ter&aacute;n</h3>
