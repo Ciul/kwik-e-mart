@@ -10,6 +10,7 @@
 	Router::connect('/login', array('controller' => 'personas', 'action' => 'login'));
 	Router::connect('/logout', array('controller' => 'personas', 'action' => 'logout'));
 	Router::connect('/signup', array('controller' => 'personas', 'action' => 'signup'));
+	Router::connect('/confirm/*', array('controller' => 'personas', 'action' => 'confirm'));
 	Router::connect('/kwikers', array('controller' => 'personas', 'action' => 'index'));
 	Router::connect('/kwikers/view/*', array('controller' => 'personas', 'action' => 'view'));
 	Router::connect('/kwikers/add', array('controller' => 'personas', 'action' => 'add'));

@@ -4,7 +4,7 @@
 class PersonasController extends AppController {
 # Properties
 	public $name			= 'Personas';
-	public $publicActions	= array('signup', 'logout');
+	public $publicActions	= array('signup', 'logout', 'confirm');
 	
 	/**************************************************
 	 * ACTIONS
@@ -86,15 +86,13 @@ class PersonasController extends AppController {
 	 */
 	public function signup() {
 		if ($this->request->is('post')) {
-			list($persona, $success) = $this->Persona->register($this->data);
+			$persona = $this->Persona->register($this->data);
 			
-			if ($success == true && !empty($persona)) {
-				$this->Session->setFlash('Bienvenido a la manada ;]', 'alert', array('class' => 'alert-success', 'block' => true));
+			if (!empty($persona)) {
+				$this->Session->setFlash('Ya sólo te falta confirmar tu cuenta. Revisa tu cuenta de correo ;)', 'alert', array('class' => 'alert-success', 'block' => true));
 				$this->redirect(array('action' => 'login' ));
-			} else if($success == false && !empty($persona)) {
-				$this->Session->setFlash('Ese usuario ya existe!', 'alert', array('class' => 'alert-error'));
 			} else {
-				$this->Session->setFlash('El usuario no pudo ser creado. No desistas', 'alert', array('class' => 'alert-error'));
+				$this->Session->setFlash('El usuario no pudo ser creado. Por favor intenta de nuevo.', 'alert', array('class' => 'alert-error'));
 			}
 		}
 	}
@@ -166,5 +164,22 @@ class PersonasController extends AppController {
 		$this->set(compact('persona'));
     }
 	
+	/**
+	 * confirm
+	 */
+	public function confirm($id = null) {
+		$this->Persona->id = $id;
+		if (!$this->Persona->exists()) {
+			throw new NotFoundException(__('Persona Invalida.'));
+		}
+		
+		if ($this->Persona->confirm()) {
+			$this->Session->setFlash('Ay Caramba! Ahora sí que podrás hacer compras de manera inteligente.', 'alert', array('class' => 'alert-info'));
+			$this->redirect(array('action' => 'login'));
+		} else {
+			$this->Session->setFlash('Oops. Algo pasó. Por favor intenta de nuevo o comunícate con el administrador.', 'alert', array('class' => 'alert-error'));
+			$this->redirect('/');
+		}
+	}
 }
 ?>

@@ -16,7 +16,8 @@ class AppController extends Controller {
 						'password'	=> 'password'
 					),
 					'scope'		=> array(
-						'Persona.enabled' => 1
+						'Persona.enabled' 	=> 1,
+						'Persona.confirmed'	=> 1
 					)
 				)
 			),

@@ -16,6 +16,13 @@
     <fieldset>
         <legend><?php echo __('Registrarse'); ?></legend>
         <?php
+			echo $this->Form->input('name', array(
+				'label'			=> false,
+				'div'			=> false,
+				'class'			=> 'input-block-level',
+				'placeholder'	=> 'Nombre'
+			));
+			
 			echo $this->Form->input('email', array(
 				'label'			=> false,
 				'div'			=> false,
