@@ -21,6 +21,10 @@ Client Side
 - Icomoon
 - Raphaeljs
 
+Travis CI
+---------
+![Screenshot 1](https://travis-ci.org/Ciul/kwik-e-mart.png?branch=master)
+
 Contributors
 ============
 - Bladimir García
