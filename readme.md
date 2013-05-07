@@ -23,7 +23,6 @@ Client Side
 
 Travis CI
 ---------
-![Screenshot 1](https://travis-ci.org/Ciul/kwik-e-mart.png?branch=master)
 [![Build Status](https://travis-ci.org/Ciul/kwik-e-mart.png?branch=master)](https://travis-ci.org/Ciul/kwik-e-mart)
 
 Contributors
