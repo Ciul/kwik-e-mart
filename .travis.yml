@@ -1,14 +1,14 @@
-#language
+# language
 language php
 php: 
   - "5.3"
 
-#whitelist
+# whitelist
 branches
   only:
     - master
 
-#before_script
+# before_script
 before_script:
 	- git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp
 	- chmod -R 777 ../cakephp/app/tmp
@@ -24,3 +24,7 @@ before_script:
 		'persistent' => false
 	);
 	}" > ../cakephp/app/Config/database.php
+
+# script
+script:
+	- ./lib/Cake/Console/cake test core Core/Configure --stderr
