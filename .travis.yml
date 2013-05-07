@@ -1,27 +1,27 @@
 language: php
-php: 
-    - 5.3
+ 
+php:
+  - 5.3
 
 branches:
-    only:
-        - master
-
+  only:
+    - master
+ 
 before_script:
-    - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp
-    - cd ../cakephp
-    - chmod -R 777 ../cakephp/app/tmp
-    - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
-    - echo "<?php
+  - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp
+  - chmod -R 777 ../cakephp/app/tmp
+  - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
+  - echo "<?php
     class DATABASE_CONFIG {
     public \$test = array(
-        'datasource' => 'Database/Mysql',
-        'database' => 'cakephp_test',
-        'host' => '0.0.0.0',
-        'login' => 'travis',
-        'password' => '',
-        'persistent' => false
+      'datasource' => 'Database/Mysql',
+      'database' => 'cakephp_test',
+      'host' => '0.0.0.0',
+      'login' => 'travis'
+      'host' => '',
+      'persistent' => false,
     );
     }" > ../cakephp/app/Config/database.php
-
+ 
 script:
-    - ./lib/Cake/Console/cake test core Core/Configure --stderr
+  - ./lib/Cake/Console/cake test core Core/Configure --stderr
