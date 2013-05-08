@@ -11,7 +11,7 @@
 ?>
 <div class="row-fluid">
 	<div class="boxed">
-		<div class="span3 well">
+		<aside class="span3 well">
 			<!-- Left Sidebar -->
 			<ul class="nav nav-list">
 				<li class="nav-header active"><span class="icon-cog"></span> Administrar</li>
@@ -20,7 +20,7 @@
 				<li><a href="<?php echo $this->Html->url(array('controller' => 'sections', 'action' => 'index')); ?>"><span class="icon-th-large"></span> Secciones</a></li>
 				<li><a href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'index')); ?>"><span class="icon-briefcase"></span> Productos</a></li>
 			</ul>
-		</div>
+		</aside>
 	</div>
 	<!--/ Left Sidebar -->
 	
