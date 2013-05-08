@@ -45,7 +45,7 @@ class PersonasController extends AppController {
 				
 				$this->redirect($redirectTo);
 			} else {
-				$this->Session->setFlash(__('Invalid credentials'), 'alert', array('class' => 'alert-error'));
+				$this->Session->setFlash(__('Datos inválidos.'), 'alert', array('class' => 'alert-error'));
 			}
 		}
 	}

@@ -38,6 +38,10 @@ class ProductsController extends AppController {
 		$this->Product->recursive = 0;
 		$products = $this->paginate();
 		
+		if (isset($this->params['requested'])) {
+            return $products;
+        }
+		
 		$this->set(compact('products'));
 	}
 	
@@ -64,7 +68,7 @@ class ProductsController extends AppController {
 				$this->Session->setFlash('El producto fue añadido exitosamente.', 'alert', array('class' => 'alert-success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('El producto no pudo ser creado. Por favor intenta nuevamente.', 'alert', 'alert-error');
+				$this->Session->setFlash('El producto no pudo ser creado. Por favor intenta nuevamente.', 'alert', array('class' => 'alert-error'));
 			}
 		}
 		
@@ -116,11 +120,14 @@ class ProductsController extends AppController {
 	/**
 	 * search
 	 */
-	public function search() {
+	public function search($searched = null) {
 		if ($this->request->is('ajax')) {
 			$searched	= $this->request->data('search');
 			$products	= $this->Product->findProduct($searched);
 			$this->set('products', $products);
+		} else if (isset($this->params['requested'])) {
+			$products	= $this->Product->findProduct($searched);
+			return $products;
 		} else {
 			throw new NotFoundException();
 		}

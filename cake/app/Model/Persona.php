@@ -63,9 +63,9 @@ class Persona extends AppModel {
 	 * beforeSave
 	 */
 	public function beforeSave($options = array()) {
-		if (isset($this->data['Persona']['password'])) {
-			$hash = Security::hash($this->data['Persona']['password'], null, true);
-			$this->data['Persona']['password'] = $hash;
+		if (isset($this->data[$this->alias]['password'])) {
+			$hash = Security::hash($this->data[$this->alias]['password'], null, true);
+			$this->data[$this->alias]['password'] = $hash;
 		}
 		
 		return true;
