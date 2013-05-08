@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://www.luiscarlosjayk.com/kwik-e-mart" />
+<title>LoginNewUser</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginNewUser</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://luiscarlosjayk.com/kwik-e-mart</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=header nav .container a[href$=&quot;/login&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=PersonaEmail</td>
+	<td>luiscarlosjayk@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=PersonaPassword</td>
+	<td>abcdef1!</td>
+</tr>
+<tr>
+	<td>submitAndWait</td>
+	<td>id=PersonaLoginForm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Datos inválidos.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bienvenido</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Login Test finished</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
