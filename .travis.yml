@@ -47,7 +47,7 @@ before_script:
   - sh -c "mysql -e 'INSERT INTO cakephp_default.products(id, created, modified, name, published, section_id) VALUES(UUID(), CURRENT_DATE, CURRENT_DATE, \"manzana\", 1, \"5155b5c8-5844-466c-8489-0a8882e7320b\")'"
   - echo "<?php 
     class DATABASE_CONFIG {
-    public \$test = array(
+    public \$default = array(
       'datasource' => 'Database/Mysql',
       'database' => 'cakephp_default',
       'host' => '0.0.0.0',
