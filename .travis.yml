@@ -19,9 +19,9 @@ before_script:
     `name` varchar(50) DEFAULT NULL,
     `email` varchar(50) NOT NULL,
     `password` char(40) NOT NULL,
-    `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
-    `confirmed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-    `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
+    `enabled` tinyint(1) unsigned NOT NULL DEFAULT 1,
+    `confirmed` tinyint(1) unsigned NOT NULL DEFAULT 0,
+    `is_admin` tinyint(1) unsigned NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
   - sh -c "mysql -e 'CREATE TABLE cakephp_default.sections (
@@ -29,7 +29,7 @@ before_script:
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `name` varchar(100) NOT NULL,
-    `published` tinyint(1) unsigned NOT NULL DEFAULT '1',
+    `published` tinyint(1) unsigned NOT NULL DEFAULT 1,
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
   - sh -c "mysql -e 'CREATE TABLE cakephp_default.products (
@@ -37,7 +37,7 @@ before_script:
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `name` varchar(100) NOT NULL,
-    `published` tinyint(1) unsigned NOT NULL DEFAULT '1',
+    `published` tinyint(1) unsigned NOT NULL DEFAULT 1,
     `section_id` char(36) NOT NULL,
     PRIMARY KEY (`id`)
     )'"
