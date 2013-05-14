@@ -38,7 +38,7 @@ before_script:
     published tinyint(1) unsigned NOT NULL DEFAULT 1,
     section_id char(36) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'"
-  - sh -c "mysql -e 'INSERT INTO cakephp_default.personas(id, name, created, modified, name, email, password, enabled, confirmed, is_admin) VALUES (UUID(), CURRENT_DATE, CURRENT_DATE, "Luis Carlos Osorio Jayk", "luiscarlosjayk@gmail.com", MD5("123456"), 1, 1, 1)'"
+  - sh -c "mysql -e 'INSERT INTO cakephp_default.personas(id, name, created, modified, name, email, password, enabled, confirmed, is_admin) VALUES (UUID(), CURRENT_DATE, CURRENT_DATE, \"Luis Carlos Osorio Jayk\", \"luiscarlosjayk@gmail.com\", MD5(\"123456\"), 1, 1, 1)'"
   - echo "<?php
     class DATABASE_CONFIG {
     public \$default = array(
