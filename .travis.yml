@@ -67,7 +67,7 @@ before_script:
       'prefix' => 'test_'
     );
     }" > ../cakephp/app/Config/database.php
- 
+  - cat  ../cakephp/app/Config/database.php
 script:
   - ./lib/Cake/Console/cake test app Model/Persona
 
