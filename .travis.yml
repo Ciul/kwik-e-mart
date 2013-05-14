@@ -38,6 +38,11 @@ before_script:
     published tinyint(1) unsigned NOT NULL DEFAULT 1,
     section_id char(36) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'"
+  -sh -c "mysql -e 'INSERT INTO cakephp_default.personas(id, name, created, modified, name, email, password, enabled, confirmed, is_admin) VALUES (UUID(), CURRENT_DATE, CURRENT_DATE, \'Luis Carlos Osorio Jayk\', \'luiscarlosjayk@gmail.com\', MD5(\'123456\'), 1, 1, 1)'" 
+  -sh -c "mysql -e 'INSERT INTO cakephp_default.sections(id, created, modified, name, published) VALUES(\'5155ada6-d970-4f18-92cd-0a8882e7320b\', CURRENT_DATE, CURRENT_DATE, \'verduras\', 1)'"
+  -sh -c "mysql -e 'INSERT INTO cakephp_default.sections(id, created, modified, name, published) VALUES(\'5155b5c8-5844-466c-8489-0a8882e7320b\', CURRENT_DATE, CURRENT_DATE, \'frutas\', 1)'"
+  -sh -c "mysql -e 'INSERT INTO cakephp_default.products(id, created, modified, name, published) VALUES(UUID(), CURRENT_DATE, CURRENT_DATE, \'tomate\', 1, \'5155ada6-d970-4f18-92cd-0a8882e7320b\)'"
+  -sh -c "mysql -e 'INSERT INTO cakephp_default.products(id, created, modified, name, published, section_id) VALUES(UUID(), CURRENT_DATE, CURRENT_DATE, \'manzana\', 1, \'5155b5c8-5844-466c-8489-0a8882e7320b\)'"
   - echo "<?php
     class DATABASE_CONFIG {
     public \$default = array(
