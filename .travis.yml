@@ -9,8 +9,8 @@ branches:
  
 before_script:
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp
-  - rm app/Model && mv ../kwik-e-mart/cake/app/Model app
-  - rm app/Test && mv ../kwik-e-mart/cake/app/Test app
+  - rm -rf app/Model && mv ../kwik-e-mart/cake/app/Model app
+  - rm -rf app/Test && mv ../kwik-e-mart/cake/app/Test app
   - chmod -R 777 ../cakephp/app/tmp
   - sh -c "mysql -e 'CREATE DATABASE cakephp_default;'"
   - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
