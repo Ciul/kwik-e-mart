@@ -11,6 +11,7 @@ before_script:
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp
   - rm -rf app/Model && mv ../kwik-e-mart/cake/app/Model app
   - rm -rf app/Test && mv ../kwik-e-mart/cake/app/Test app
+  - rm -rf app/Lib && mv ../kwik-e-mart/cake/app/Lib app
   - chmod -R 777 ../cakephp/app/tmp
   - sh -c "mysql -e 'CREATE DATABASE cakephp_default;'"
   - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
@@ -67,6 +68,12 @@ before_script:
       'prefix' => 'test_'
     );
     }" > ../cakephp/app/Config/database.php
+  - echo "<?php 
+    class Emailer {
+    public static function personaConfirm() {
+    return true;
+    }
+    }" > ../cakephp/app/Lib/Utility/Emailer.php
 script:
   - ./lib/Cake/Console/cake test app Model/Persona
 
