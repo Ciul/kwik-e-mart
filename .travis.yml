@@ -66,4 +66,4 @@ before_script:
     }" > ../cakephp/app/Config/database.php
  
 script:
-  - ./lib/Cake/Console/cake test core Core/Configure --stderr
+  - ./lib/Cake/Console/cake test app Model/Persona --stderr
