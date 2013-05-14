@@ -55,7 +55,7 @@ before_script:
       'password' => '',
       'persitent' => false
     );
-	
+    
     public \$test = array(
       'datasource' => 'Database/Mysql',
       'database' => 'cakephp_test',
