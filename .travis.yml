@@ -54,7 +54,8 @@ before_script:
       'login' => 'travis',
       'password' => '',
       'persitent' => false
-    ),
+    );
+	
     public \$test = array(
       'datasource' => 'Database/Mysql',
       'database' => 'cakephp_test',
