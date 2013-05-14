@@ -10,15 +10,53 @@ branches:
 before_script:
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp
   - chmod -R 777 ../cakephp/app/tmp
+  - sh -c "mysql -e 'CREATE DATABASE cakephp_default;'"
   - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
+  - sh -c "mysql -e 'CREATE TABLE cakephp_default.personas (
+    `id` char(36) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    `name` varchar(50) DEFAULT NULL,
+    `email` varchar(50) NOT NULL,
+    `password` char(40) NOT NULL,
+    `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
+    `confirmed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+    `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
+  - sh -c "mysql -e 'CREATE TABLE cakephp_default.sections (
+    id` char(36) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    `name` varchar(100) NOT NULL,
+    `published` tinyint(1) unsigned NOT NULL DEFAULT '1',
+    PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
+  -sh -c "mysql -e 'CREATE TABLE cakephp_default.products(
+    `id` char(36) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    `name` varchar(100) NOT NULL,
+    `published` tinyint(1) unsigned NOT NULL DEFAULT '1',
+    `section_id` char(36) NOT NULL,
+    PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
   - echo "<?php
     class DATABASE_CONFIG {
+    public \$default = array(
+      'datasource' => 'Database/Mysql',
+      'database' => 'cakephp_default',
+      'host' => '0.0.0.0',
+      'login' => 'travis',
+      'password' => '',
+      'persitent' => false
+    ),
     public \$test = array(
       'datasource' => 'Database/Mysql',
       'database' => 'cakephp_test',
       'host' => '0.0.0.0',
       'login' => 'travis'
-      'host' => '',
+      'password' => '',
       'persistent' => false,
     );
     }" > ../cakephp/app/Config/database.php

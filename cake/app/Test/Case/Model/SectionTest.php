@@ -32,12 +32,12 @@ class SectionTest extends CakeTestCase {
 		
 		debug($section_verduras);
 		
-		$section_verduras['Section']['name'] = 'green_food';
+		$section_verduras['Section']['name'] = 'greenfood';
 		$this->Section->save($section_verduras);
 		
 		$section_green_food = $this->Section->find('first', array(
 			'conditions'	=> array(
-				'name'	=> 'green_food'
+				'name'	=> 'greenfood'
 			),
 			'recursive'	=> -1
 		));
