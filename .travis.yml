@@ -32,15 +32,15 @@ before_script:
     `published` tinyint(1) unsigned NOT NULL DEFAULT '1',
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
-  -sh -c "mysql -e 'CREATE TABLE cakephp_default.products(
-    `id` char(36) NOT NULL,
+  - sh -c "mysql -e 'CREATE TABLE cakephp_default.products (
+    id char(36) NOT NULL,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `name` varchar(100) NOT NULL,
     `published` tinyint(1) unsigned NOT NULL DEFAULT '1',
     `section_id` char(36) NOT NULL,
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8'"
+    )'"
   - echo "<?php
     class DATABASE_CONFIG {
     public \$default = array(
