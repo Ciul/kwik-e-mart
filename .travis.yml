@@ -62,6 +62,7 @@ before_script:
       'login' => 'travis'
       'password' => '',
       'persistent' => false,
+      'prefix' => 'test_'
     );
     }" > ../cakephp/app/Config/database.php
  
