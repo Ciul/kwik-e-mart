@@ -75,9 +75,7 @@ before_script:
     }
     }" > ../cakephp/app/Lib/Utility/Emailer.php
 script:
-  - ./lib/Cake/Console/cake test app Model/Persona
-  - ./lib/Cake/Console/cake test app Model/Product
-  - ./lib/Cake/Console/cake test app Model/Section
+  - ./lib/Cake/Console/cake test app AllModelTest
 
 notifications:
   - email: false
