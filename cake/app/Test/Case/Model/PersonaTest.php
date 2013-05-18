@@ -26,7 +26,7 @@ class PersonaTest extends CakeTestCase {
 	public function testFindByName() {
 		$result = $this->Persona->find('first', array(
 			'conditions' => array(
-				'email' => 'luis@test.com'
+				'email' => 'luiscarlosjayk@gmail.com'
 			)
 		));
 		
