@@ -123,6 +123,7 @@ class Persona extends AppModel {
  * <p>Edit a Persona record defined. <br/>
  * If password is empty it won't be modified at all. Otherwise if it's not empty it will be updated.</p>
  *
+ * @link	http://book.cakephp.org/2.0/en/models/callback-methods.html#beforesave
  * @access	public
  * @name	edit
  * @param	Array data		Persona data for editing a Persona record.
