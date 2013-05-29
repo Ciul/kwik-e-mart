@@ -1,13 +1,41 @@
 <?php
 # /app/Model/Product.php
+
+/**
+ * Product Model Class.
+ *
+ * Product Model Class. Defines variables and methods for handling Product data.
+ * 
+ * @name	Product
+ * @package	App.Model
+ */
 class Product extends AppModel {
-# Properties
+/**
+ * @access	public
+ * @var		string
+ * @name	name
+ */
 	public $name = 'Product';
 
-# Relations
+/**
+ * Set belongsTo model relations dependencies with other models.
+ *
+ * @access	public
+ * @var		array
+ * @name	belongsTo
+ */
 	public $belongsTo = array('Section');
 	
-# Validate
+/**
+ * Validate array.
+ * 
+ * <p>Validation is set upong this array for CakePHP Model validation being used.</p>
+ *
+ * @link	http://book.cakephp.org/2.0/en/models/data-validation.html
+ * @access	public
+ * @var		array
+ * @name	validate
+ */
 	public $validate = array(
 		'name'	=> array(
 			'notEmpty'	=> array(
@@ -25,13 +53,17 @@ class Product extends AppModel {
 			)
 		)
 	);
-	
-/**************************************************
- * ACTIONS
- **************************************************/
 
 /**
- * beforeSave
+ * Place any pre-save logic in this function.
+ * 
+ * <p>Place any pre-save logic in this function.<br/>
+ * This function executes immediately after model data has been successfully validated, but just before the data is saved.<br/>
+ * This function should also return true if you want the save operation to continue.</p>
+ * 
+ * @Override
+ * @access	public
+ * @return	Boolean continue	True if saving operation can continue, false to stop saving operation.
  */
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['name'])) {
@@ -42,7 +74,13 @@ class Product extends AppModel {
 	}
 
 /**
- * findProduct
+ * Searchs for a product given it's name.
+ * 
+ * Searchs for a product given it's name as parameter. Returns null if none is found.
+ * 
+ * @access	public
+ * @param	String	searched	Product name searched.
+ * @return	Array	products	Returns products found with name given by searched param or null if none is found.
  */
 	public function findProduct($searched) {
 		$this->Behaviors->load('Containable');

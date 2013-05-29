@@ -1,24 +1,34 @@
 <?php
 # /app/Controller/SectionsController.php
 
+/**
+ * Handles Sections interaction.
+ *
+ * @package       App.Controller
+ */
 class SectionsController extends AppController {
-# Properties
+/**
+ * Name of this Controller
+ *
+ * @var	string
+ */
 	public $name = 'Sections';
-	
-	/**************************************************
-	 * ACTIONS
-	 **************************************************/
-	
-	/**
-	 * beforeFilter
-	 */
+/**
+ * Callback method called before any controller action.
+ *
+ * @Override
+ */
 	public function beforeFilter() {
 		parent::beforeFilter();
 	}
 	
-	/**
-	 * isAuthorized
-	 */
+/**
+ * Checks user authorization.
+ *
+ * @param	array $user Active user data
+ * @param	CakeRequest $request
+ * @return	boolean authorized	True if user is authorized, false otherwise.
+ */
 	public function isAuthorized($user = null) {
 		if (!empty($user) && $user['is_admin'])
 			return true;
@@ -26,9 +36,9 @@ class SectionsController extends AppController {
 		return parent::isAuthorized($user);
 	}
 	
-	/**
-	 * index
-	 */
+/**
+ * List all Sections.
+ */
 	public function index() {
 		$this->Section->recursive = 0;
 		$sections = $this->paginate();
@@ -36,9 +46,11 @@ class SectionsController extends AppController {
 		$this->set(compact('sections'));
 	}
 	
-	/**
-	 * view
-	 */
+/**
+ * View a Section information.
+ *
+ * @param	string id	Id of the Section to view.
+ */
 	public function view($id = null) {
 		$this->Section->id = $id;
 		if (!$this->Section->exists()) {
@@ -49,9 +61,10 @@ class SectionsController extends AppController {
 		$this->set(compact('section'));
 	}
 	
-	/**
-	 * add
-	 */
+/**
+ * Add a new Section record.
+ *
+ */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Section->create();
@@ -64,9 +77,11 @@ class SectionsController extends AppController {
 		}
 	}
 	
-	/**
-	 * edit
-	 */
+/**
+ * Edit a Section record given it's id.
+ *
+ * @param	string id	Section id to edit.
+ */
 	public function edit($id = null) {
 		$this->Section->id = $id;
 		if (!$this->Section->exists()) {
@@ -85,9 +100,11 @@ class SectionsController extends AppController {
 		}
 	}
 	
-	/**
-	 * delete
-	 */
+/**
+ * Edit a Section record given it's id.
+ *
+ * @param	string id	Section id to edit.
+ */
 	public function delete($id = null) {
 		$this->Section->id = $id;
 		if (!$this->Section->exists()) {

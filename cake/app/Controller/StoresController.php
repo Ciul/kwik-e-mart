@@ -1,25 +1,32 @@
 <?php
 # /app/Controller/StoresController.php
 
+/**
+ * Handles Store interaction.
+ *
+ * @package       App.Controller
+ */
 class StoresController extends AppController {
 # Properties
 	public $name = 'Stores';
 	public $uses = false;
 	
-	/**************************************************
-	 * ACTIONS
-	 **************************************************/
-	
-	/**
-	 * beforeFilter
-	 */
+/**
+ * Callback method called before any controller action.
+ *
+ * @Override
+ */
 	public function beforeFilter() {
 		parent::beforeFilter(); // parent beforeFilter.
 	}
 	
-	/**
-	 * isAuthorized
-	 */
+/**
+ * Checks user authorization.
+ *
+ * @param	array $user Active user data
+ * @param	CakeRequest $request
+ * @return	boolean authorized	True if user is authorized, false otherwise.
+ */
 	public function isAuthorized($user = null) {
 		$action = $this->request->action;
 		
@@ -32,16 +39,19 @@ class StoresController extends AppController {
 		return parent::isAuthorized($user);
 	}
 	
-	/**
-	 * view
-	 */
+/**
+ * Display map
+ */
 	public function view() {
 		// Display map
 	}
 	
-	/**
-	 * getMap
-	 */
+/**
+ * Retrieves map json content.
+ *
+ * @param	int	id	Map version number.
+ * @return	string	mapFile	Returns map json file content.
+ */
 	public function getMap($id = null) {
 		$file = array(
 			'path'		=> 'files'.DS.'map'.DS.'map',

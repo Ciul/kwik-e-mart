@@ -1,27 +1,48 @@
 <?php
+/**
+ * This controller displays static content pages.
+ *
+ * @package       App.Controller
+ */
 class PagesController extends AppController {
-# Properties
+
 	public $name = 'Pages';
+/**
+ * Set Model to use. 
+ *
+ * Set Model to use withing this Controller. Leave empty if none will be used.
+ *
+ * @access	public
+ * @var		Array
+ */
 	public $uses = array();
+/**
+ * Establish actions that can be publicly accessed withouth previous authentication.
+ *
+ * @access	public
+ * @var		Array
+ */
 	public $publicActions = array('home', 'display');
 	
-	/**************************************************
-	 * ACTIONS
-	 **************************************************/
 	
-	/**
-	 * beforeFilter
-	 */
+	
+/**
+ * Callback method called before any controller action.
+ *
+ * @Override
+ */
 	public function beforeFilter() {
 		parent::beforeFilter(); // parent beforeFilter.
 	}
 	
-	/**
-	 * isAuthorized
-	 */
+/**
+ * Checks user authorization.
+ *
+ * @param	array $user Active user data
+ * @param	CakeRequest $request
+ * @return	boolean authorized	True if user is authorized, false otherwise.
+ */
 	public function isAuthorized($user = null) {
-		$action = $this->request->action;
-		
 		return parent::isAuthorized($user);
 	}
 	
@@ -29,7 +50,6 @@ class PagesController extends AppController {
  * Displays a view
  *
  * @param mixed What page to display
- * @return void
  */
 	public function display() {
 		$path = func_get_args();
@@ -55,6 +75,7 @@ class PagesController extends AppController {
 	
 /**
  * Displays the HomePage
+ *
  */
 	public function home() {
 		$title_for_layout	= 'Kwik-e-mart';

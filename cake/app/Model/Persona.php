@@ -10,6 +10,7 @@ App::uses('CakeEvent', 'Event'); // Imports CakeEvent class.
  * <p>Persona Model Class. Defines variables and methods for handling Persona data.</p>
  * 
  * @name	Persona
+ * @package	App.Model
  */
 class Persona extends AppModel {
 /**

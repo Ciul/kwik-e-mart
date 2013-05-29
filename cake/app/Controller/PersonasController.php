@@ -1,25 +1,38 @@
 <?php
 # /app/Controller/PersonasController.php
 
+/**
+ * Handles Personas interaction.
+ *
+ * @package       App.Controller
+ */
 class PersonasController extends AppController {
-# Properties
+/**
+ * Name of this Controller
+ */
 	public $name			= 'Personas';
+/**
+ * Public actions that do not need user authorization.
+ */	
 	public $publicActions	= array('signup', 'logout', 'confirm');
 	
-	/**************************************************
-	 * ACTIONS
-	 **************************************************/
-	
-	/**
-	 * beforeFilter
-	 */
+/**
+ * Callback method called before any controller action.
+ *
+ * @Override
+ */
 	public function beforeFilter() {
 		parent::beforeFilter(); // parent beforeFilter.
 	}
 	
-	/**
-	 * isAuthorized
-	 */
+/**
+ * Checks user authorization.
+ *
+ * @param	array $user Active user data
+ * @param	CakeRequest $request
+ * @return	boolean authorized	True if user is authorized, false otherwise.
+ */
+
 	public function isAuthorized($user = null) {
 		if ($this->action == 'view')
 			if ($this->request->params['pass'][0] == 'me')
@@ -28,9 +41,9 @@ class PersonasController extends AppController {
 		return parent::isAuthorized($user);
 	}
 	
-	/**
-	 * login
-	 */
+/**
+ * Provides user login logic.
+ */
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
@@ -50,9 +63,9 @@ class PersonasController extends AppController {
 		}
 	}
 	
-	/**
-	 * logout
-	 */
+/**
+ * Provides user logout logic.
+ */
 	public function logout() {
 		if ($this->Auth->loggedIn()) {
 			$this->Session->setFlash('<h2>'.__('Te estamos extrañando.').'</h2>', 'alert', array('class' => 'alert-info', 'block' => true));
@@ -63,9 +76,10 @@ class PersonasController extends AppController {
 		}
 	}
 	
-	/**
-	 * add
-	 */
+/**
+ * Add a new Persona record.
+ *
+ */
 	public function add() {
 		if ($this->request->is('post')) {
 			list($persona, $success) = $this->Persona->register($this->data);
@@ -97,9 +111,9 @@ class PersonasController extends AppController {
 		}
 	}
 	
-	/**
-	 * index
-	 */
+/**
+ * List all Persona records.
+ */
 	public function index() {
 		$this->Persona->recursive = 0;
 		$personas = $this->paginate();
@@ -107,9 +121,11 @@ class PersonasController extends AppController {
 		$this->set(compact('personas'));
 	}
 	
-	/**
-	 * edit
-	 */
+/**
+ * Edit a Persona record given it's id.
+ *
+ * @param	string id	Persona id to edit.
+ */
 	public function edit($id = null) {
 		$this->Persona->id = $id;
 		if (!$this->Persona->exists()) {
@@ -128,9 +144,11 @@ class PersonasController extends AppController {
 		}
 	}
 	
-	/**
-	 * delete
-	 */
+/**
+ * Delete a Persona record given it's id.
+ *
+ * @param	string id	Persona id to delete.
+ */
 	public function delete($id = null) {
 		$this->Persona->id = $id;
 		if (!$this->Persona->exists()) {
@@ -145,9 +163,11 @@ class PersonasController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
-	/**
-	 * view
-	 */
+/**
+ * View a Persona information.
+ *
+ * @param	string id	Id of the Persona to view.
+ */
 	public function view($id = null) {
 		if ($id == 'me') { // Special case for loggedin user to see his/her profile
 			$user_id = $this->Auth->user('id');
@@ -164,9 +184,9 @@ class PersonasController extends AppController {
 		$this->set(compact('persona'));
     }
 	
-	/**
-	 * confirm
-	 */
+/**
+ * Provides user confirmation logic.
+ */
 	public function confirm($id = null) {
 		$this->Persona->id = $id;
 		if (!$this->Persona->exists()) {

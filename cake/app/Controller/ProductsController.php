@@ -1,25 +1,36 @@
 <?php
 # /app/Controller/ProductsController.php
 
+/**
+ * Handles Products interaction.
+ *
+ * @package       App.Controller
+ */
 class ProductsController extends AppController {
-# Properties
+/**
+ * Name of this Controller
+ *
+ * @var	string
+ */
 	public $name = 'Products';
 	
-	/**************************************************
-	 * ACTIONS
-	 **************************************************/
-	
-	/**
-	 * beforeFilter
-	 */
+/**
+ * Callback method called before any controller action.
+ *
+ * @Override
+ */
 	public function beforeFilter() {
 		parent::beforeFilter(); // parent beforeFilter.
 		
 	}
 	
-	/**
-	 * isAuthorized
-	 */
+/**
+ * Checks user authorization.
+ *
+ * @param	array $user Active user data
+ * @param	CakeRequest $request
+ * @return	boolean authorized	True if user is authorized, false otherwise.
+ */
 	public function isAuthorized($user = null) {
 		$action = $this->request->action;
 		
@@ -31,9 +42,9 @@ class ProductsController extends AppController {
 		return parent::isAuthorized($user);
 	}
 	
-	/**
-	 * index
-	 */
+/**
+ * List all Products.
+ */
 	public function index() {
 		$this->Product->recursive = 0;
 		$products = $this->paginate();
@@ -45,9 +56,11 @@ class ProductsController extends AppController {
 		$this->set(compact('products'));
 	}
 	
-	/**
-	 * view
-	 */
+/**
+ * View a Product information.
+ *
+ * @param	string id	Id of the Product to view.
+ */
 	public function view($id = null) {
 		$this->Product->id = $id;
 		if (!$this->Product->exists()) {
@@ -58,9 +71,10 @@ class ProductsController extends AppController {
 		$this->set(compact('product'));
 	}
 	
-	/**
-	 * add
-	 */
+/**
+ * Add a new Product record.
+ *
+ */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Product->create();
@@ -76,9 +90,11 @@ class ProductsController extends AppController {
 		$this->set(compact('sections'));
 	}
 	
-	/**
-	 * edit
-	 */
+/**
+ * Edit a Product record given it's id.
+ *
+ * @param	string id	Product id to edit.
+ */
 	public function edit($id = null) {
 		$this->Product->id = $id;
 		if (!$this->Product->exists()) {
@@ -100,9 +116,11 @@ class ProductsController extends AppController {
 		$this->set(compact('sections'));
 	}
 	
-	/**
-	 * delete
-	 */
+/**
+ * Delete a Product record given it's id.
+ *
+ * @param	string id	Product id to delete.
+ */
 	public function delete($id = null) {
 		$this->Product->id = $id;
 		if (!$this->Product->exists()) {
@@ -117,9 +135,12 @@ class ProductsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
-	/**
-	 * search
-	 */
+/**
+ * Search method for a Product given it's name.
+ *
+ * @param	string searched		Product name to search for.
+ * @return	mixed	products	Return an array of products found or null if none.
+ */
 	public function search($searched = null) {
 		if ($this->request->is('ajax')) {
 			$searched	= $this->request->data('search');
