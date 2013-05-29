@@ -52,8 +52,14 @@ class Persona extends AppModel {
     );
 	
 /**
+ * Overrides CakeModel getEventManager for attaching new Events and listeners.
+ * 
+ * <p>Attachs PersonaEventListener to the Persona.afterRegister Event.<br/>
+ * This is in charge of sending confirmation emails and other tasks.</p>
+ * 
  * @Override
- * getEventManager
+ * @access	public
+ * @return	CakeEventManager eventManager	EventManager of Persona Model class.
  */
 	public function getEventManager() {
 		parent::getEventManager(); // Attach native CakePHP Model events and also for setting up the EventManager.
@@ -69,9 +75,17 @@ class Persona extends AppModel {
 		return $this->_eventManager;
 	}
 	
-	/**
-	 * beforeSave
-	 */
+/**
+ * Place any pre-save logic in this function.
+ * 
+ * <p>Place any pre-save logic in this function.<br/>
+ * This function executes immediately after model data has been successfully validated, but just before the data is saved.<br/>
+ * This function should also return true if you want the save operation to continue.</p>
+ * 
+ * @Override
+ * @access	public
+ * @return	Boolean continue	True if saving operation can continue, false to stop saving operation.
+ */
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['password'])) {
 			$hash = Security::hash($this->data[$this->alias]['password'], null, true);
