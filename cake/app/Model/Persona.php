@@ -5,8 +5,18 @@ App::uses('Security', 'Utility'); // Imports Security Utility
 App::uses('CakeEvent', 'Event'); // Imports CakeEvent class.
 
 class Persona extends AppModel {
-# Properties
+/**
+ * @access	public
+ * @var		string
+ * @name	name
+ */
 	public $name = 'Persona';
+/**
+ * @access	public
+ * @var		string
+ * @name	validate
+ */
+
 	public $validate = array(
 		'id'		=> array(
 			'rule'	=> 'blank',
@@ -71,9 +81,16 @@ class Persona extends AppModel {
 		return true;
 	}
 	
-	/**
-	 * register
-	 */
+/**
+ * Register a new Persona.
+ *
+ * <p>Register a new Persona as a shopper. <br/> Dispatch Persona.afterRegister event for listeners.</p>
+ *
+ * @access	public
+ * @name	register
+ * @param	Array data		Persona data for creating a new Persona record.
+ * @return	Array persona	Persona record just created.
+ */
 	public function register($data) {
 		$data[$this->alias]['is_admin'] = 0; // Do not register as an admin.
 		
@@ -86,9 +103,17 @@ class Persona extends AppModel {
 		return $persona;
 	}
 	
-	/**
-	 * edit
-	 */
+/**
+ * Edit a Persona.
+ *
+ * <p>Edit a Persona record defined. <br/>
+ * If password is empty it won't be modified at all. Otherwise if it's not empty it will be updated.</p>
+ *
+ * @access	public
+ * @name	edit
+ * @param	Array data		Persona data for editing a Persona record.
+ * @return	Boolean edited	True if editing was successful, false otherwise.
+ */
 	public function edit($data) {
 		$email = isset($data['Persona']['email']) ? $data['Persona']['email'] : null;
 		$password = isset($data['Persona']['password']) ? $data['Persona']['password'] : null;
