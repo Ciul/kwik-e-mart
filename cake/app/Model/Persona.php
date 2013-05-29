@@ -4,6 +4,14 @@
 App::uses('Security', 'Utility'); // Imports Security Utility
 App::uses('CakeEvent', 'Event'); // Imports CakeEvent class.
 
+/**
+ * Persona Model Class.
+ *
+ * <p>Persona Model Class. Defines variables and methods for handling Persona data.</p>
+ * 
+ * @name	Persona
+ * @filesource
+ */
 class Persona extends AppModel {
 /**
  * @access	public
