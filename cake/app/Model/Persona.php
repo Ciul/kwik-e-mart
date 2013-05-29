@@ -12,11 +12,15 @@ class Persona extends AppModel {
  */
 	public $name = 'Persona';
 /**
+ * Validate array.
+ * 
+ * <p>Validation is set upong this array for CakePHP Model validation being used.</p>
+ *
+ * @link	http://book.cakephp.org/2.0/en/models/data-validation.html
  * @access	public
  * @var		string
  * @name	validate
  */
-
 	public $validate = array(
 		'id'		=> array(
 			'rule'	=> 'blank',
@@ -46,10 +50,6 @@ class Persona extends AppModel {
 			)
 		)
     );
-	
-	/**************************************************
-	 * ACTIONS
-	 **************************************************/
 	
 /**
  * @Override
@@ -126,9 +126,15 @@ class Persona extends AppModel {
 		return !empty($persona);
 	}
 	
-	/**
-	 * confirm
-	 */
+/**
+ * Confirm a Persona account.
+ *
+ * <p>Confirm a Persona account. After someone has registered, an email is sent with a link for confirming account.</p>
+ *
+ * @access	public
+ * @name	confirm
+ * @return	Boolean confirmed	True if confirmation was successful, false otherwise.
+ */
 	public function confirm() {
 		return $this->saveField('confirmed', 1);
 	}
